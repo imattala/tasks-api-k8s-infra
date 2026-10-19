@@ -37,7 +37,7 @@ Inside the cluster:
 
 Work in progress — see the [issues](../../issues) for the milestone breakdown.
 
-- [ ] M1 — Cluster via Terraform
+- [x] M1 — Cluster via Terraform
 - [ ] M2 — App + database on Kubernetes
 - [ ] M3 — Helm chart
 - [ ] M4 — Ingress + autoscaling
@@ -46,9 +46,9 @@ Work in progress — see the [issues](../../issues) for the milestone breakdown.
 
 ## Running it
 
-**Prerequisites:** Docker, Terraform, `kind`, `kubectl`, `helm` (all
-installed as plain user-local binaries — no system package manager
-needed).
+**Prerequisites:** Docker, Terraform, `kind`, `kubectl`, `helm` — see
+[docs/prerequisites.md](docs/prerequisites.md) (all installed as plain
+user-local binaries, no system package manager or `sudo` needed).
 
 ```
 cd terraform
