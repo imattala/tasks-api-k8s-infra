@@ -1,0 +1,24 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+crash.log
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Helm
+charts/*/charts/
+charts/*/Chart.lock
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
