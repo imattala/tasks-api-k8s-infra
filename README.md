@@ -38,7 +38,7 @@ Inside the cluster:
 Work in progress — see the [issues](../../issues) for the milestone breakdown.
 
 - [x] M1 — Cluster via Terraform
-- [ ] M2 — App + database on Kubernetes
+- [x] M2 — App + database on Kubernetes
 - [ ] M3 — Helm chart
 - [ ] M4 — Ingress + autoscaling
 - [ ] M5 — Observability on Kubernetes
