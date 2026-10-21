@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tasks-api
+  labels:
+    {{- include "tasks-api.labels" . | nindent 4 }}
+spec:
+  selector:
+    app: tasks-api
+  ports:
+    - port: 80
+      targetPort: 8000

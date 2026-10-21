@@ -1,0 +1,6 @@
+apiVersion: v2
+name: tasks-api
+description: A small CRUD API + Postgres, deployed as the vehicle for a Terraform + Kubernetes infra project
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
