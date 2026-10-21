@@ -19,9 +19,9 @@ for progress.
 ```
 Terraform
   ├─ kind provider       → creates the local Kubernetes cluster
-  ├─ kubernetes provider → namespace, Deployment/Service/ConfigMap/
-  │                         Secret/PVC (later a Helm release instead)
-  └─ helm provider       → ingress-nginx, kube-prometheus-stack
+  ├─ kubernetes provider → namespace
+  └─ helm provider       → the tasks-api chart (charts/tasks-api);
+                            later also ingress-nginx, kube-prometheus-stack
 
 Inside the cluster:
   tasks-api (FastAPI + SQLAlchemy)  ──►  Postgres (PVC)
@@ -39,7 +39,7 @@ Work in progress — see the [issues](../../issues) for the milestone breakdown.
 
 - [x] M1 — Cluster via Terraform
 - [x] M2 — App + database on Kubernetes
-- [ ] M3 — Helm chart
+- [x] M3 — Helm chart
 - [ ] M4 — Ingress + autoscaling
 - [ ] M5 — Observability on Kubernetes
 - [ ] M6 — Polish
