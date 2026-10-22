@@ -3,6 +3,31 @@ provider "kind" {}
 resource "kind_cluster" "this" {
   name           = "tasks-api"
   wait_for_ready = true
+
+  kind_config {
+    kind        = "Cluster"
+    api_version = "kind.x-k8s.io/v1alpha4"
+
+    node {
+      role = "control-plane"
+
+      # Maps the control-plane node's 80/443 to the real host, so
+      # ingress-nginx's hostPort setup is reachable at localhost - there's
+      # only one node (no separate workers), so this is also the only node
+      # ingress-nginx can schedule onto.
+      extra_port_mappings {
+        container_port = 80
+        host_port      = 80
+        protocol       = "TCP"
+      }
+
+      extra_port_mappings {
+        container_port = 443
+        host_port      = 443
+        protocol       = "TCP"
+      }
+    }
+  }
 }
 
 provider "kubernetes" {

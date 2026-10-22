@@ -40,7 +40,7 @@ Work in progress — see the [issues](../../issues) for the milestone breakdown.
 - [x] M1 — Cluster via Terraform
 - [x] M2 — App + database on Kubernetes
 - [x] M3 — Helm chart
-- [ ] M4 — Ingress + autoscaling
+- [x] M4 — Ingress + autoscaling
 - [ ] M5 — Observability on Kubernetes
 - [ ] M6 — Polish
 
