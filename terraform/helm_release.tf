@@ -12,11 +12,13 @@ resource "helm_release" "tasks_api" {
       name  = "api.image.tag"
       value = split(":", local.app_image)[1]
     },
-    {
-      name  = "api.replicaCount"
-      value = "1"
-    },
   ]
 
-  depends_on = [terraform_data.load_app_image]
+  # ingress-nginx and metrics-server both need to be up before the HPA
+  # can actually do anything useful.
+  depends_on = [
+    terraform_data.load_app_image,
+    helm_release.ingress_nginx,
+    helm_release.metrics_server,
+  ]
 }

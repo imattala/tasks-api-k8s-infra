@@ -6,7 +6,9 @@ metadata:
     {{- include "tasks-api.labels" . | nindent 4 }}
     app: tasks-api
 spec:
+  {{- if not .Values.api.autoscaling.enabled }}
   replicas: {{ .Values.api.replicaCount }}
+  {{- end }}
   selector:
     matchLabels:
       app: tasks-api
