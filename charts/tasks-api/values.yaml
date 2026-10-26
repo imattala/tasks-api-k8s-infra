@@ -18,6 +18,8 @@ api:
   ingress:
     enabled: true
     className: nginx
+  monitoring:
+    enabled: true
 
 postgres:
   image: postgres:16-alpine

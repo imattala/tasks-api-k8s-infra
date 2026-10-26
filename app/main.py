@@ -2,6 +2,7 @@ import os
 from datetime import datetime, timezone
 
 from fastapi import FastAPI, HTTPException
+from prometheus_fastapi_instrumentator import Instrumentator
 from pydantic import BaseModel
 from sqlalchemy import Boolean, Column, DateTime, Integer, String, create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
@@ -46,6 +47,7 @@ class TaskOut(BaseModel):
 
 
 app = FastAPI(title="tasks-api")
+Instrumentator().instrument(app).expose(app)
 
 
 @app.on_event("startup")

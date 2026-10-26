@@ -1,0 +1,49 @@
+{{- if .Values.api.monitoring.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tasks-api-grafana-dashboard
+  labels:
+    grafana_dashboard: "1"
+data:
+  tasks-api.json: |
+    {
+      "title": "tasks-api",
+      "uid": "tasks-api",
+      "timezone": "browser",
+      "schemaVersion": 39,
+      "version": 1,
+      "refresh": "10s",
+      "time": { "from": "now-15m", "to": "now" },
+      "panels": [
+        {
+          "id": 1,
+          "title": "Request rate (req/s)",
+          "type": "timeseries",
+          "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "targets": [
+            {
+              "expr": "sum(rate(http_requests_total{handler!=\"/metrics\"}[1m])) by (handler)",
+              "legendFormat": "{{ "{{" }}handler{{ "}}" }}",
+              "refId": "A"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "p95 latency (s)",
+          "type": "timeseries",
+          "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+          "datasource": { "type": "prometheus", "uid": "prometheus" },
+          "targets": [
+            {
+              "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{handler!=\"/metrics\"}[5m])) by (le, handler))",
+              "legendFormat": "{{ "{{" }}handler{{ "}}" }}",
+              "refId": "A"
+            }
+          ]
+        }
+      ]
+    }
+{{- end }}
