@@ -24,6 +24,22 @@ resource "helm_release" "kube_prometheus_stack" {
       grafana = {
         adminPassword = "admin"
       }
+      prometheusOperator = {
+        # Its cert-gen pre-install hook (same pattern as ingress-nginx's
+        # admission webhook) only guards PrometheusRule validation, which
+        # this project doesn't use - and it proved flaky on a single-node
+        # kind cluster (first apply timed out waiting on that hook's Job).
+        # Dropping it removes that failure mode instead of just retrying.
+        admissionWebhooks = {
+          enabled = false
+        }
+        # tls.enabled is a separate flag from admissionWebhooks - it's what
+        # makes the operator itself mount a TLS secret that only the
+        # disabled cert-gen job would have created, so it has to go too.
+        tls = {
+          enabled = false
+        }
+      }
     })
   ]
 
