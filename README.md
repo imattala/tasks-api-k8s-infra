@@ -41,7 +41,7 @@ Work in progress — see the [issues](../../issues) for the milestone breakdown.
 - [x] M2 — App + database on Kubernetes
 - [x] M3 — Helm chart
 - [x] M4 — Ingress + autoscaling
-- [ ] M5 — Observability on Kubernetes
+- [x] M5 — Observability on Kubernetes
 - [ ] M6 — Polish
 
 ## Running it

@@ -1,0 +1,16 @@
+{{- if .Values.api.monitoring.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: tasks-api
+  labels:
+    {{- include "tasks-api.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "tasks-api.labels" . | nindent 6 }}
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 10s
+{{- end }}
